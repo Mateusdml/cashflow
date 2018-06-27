@@ -13,7 +13,7 @@ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 
 <!--  	<class>br.edu.ifpb.pweb2.model.Usuario</class> -->
 
-  
+<!--
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" />
 			<property name="hibernate.connection.driver_class" value="org.hsqldb.jdbc.JDBCDriver" />
@@ -29,9 +29,9 @@ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 			<property name="hibernate.c3p0.min_size" value="1" />
 			<property name="hibernate.c3p0.timeout" value="100" />
 		</properties>
+-->
 
 
-<!--
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
 		    <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/cashflow" />
@@ -43,9 +43,9 @@ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 		    <property name="eclipselink.logging.level" value="fine"/>	
 		    <property name="eclipselink.logging.file" value="log.txt"/>    
 		</properties>	
- -->
  
- <!--    
+ 
+<!-- 
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 		    <property name="javax.persistence.jdbc.url"  value="jdbc:mysql://127.0.0.1:3306/cashflow" />
@@ -57,7 +57,7 @@ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 		    <property name="eclipselink.logging.level" value="fine"/>	
 		    <property name="eclipselink.logging.file" value="log.txt"/>  	   	    
 		</properties>
-
+		
 -->
 
 	</persistence-unit>
