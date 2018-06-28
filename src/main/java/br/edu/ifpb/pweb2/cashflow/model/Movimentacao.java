@@ -31,7 +31,7 @@ public class Movimentacao
 	}
 	
 	public Movimentacao() {
-//		PARA PRESISTENCIA
+//		PARA PERSISTENCIA
 	}
 	
 //	PARA QUANDO VIER DO BANCO DE DADOS

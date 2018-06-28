@@ -19,7 +19,7 @@
 		<form class="form-signin" action="${pageContext.request.contextPath}/Login/Logon" method="post">
 			<label for="inputEmail" class="sr-only">Usuario</label>
 			<input type="text" name="login" id="login" class="form-control" placeholder="O seu username para login" required autofocus
-			   value="${cookie['loginCookie].value}" /><br/><br/>
+			   value="${cookie['loginCookie'].value}" /><br/><br/>
 			   
 			<label for="inputPassword" class="sr-only">Senha</label>
 			<input type="password" name="senha" id="senha" class="form-control" placeholder="Senha" required /><br/>

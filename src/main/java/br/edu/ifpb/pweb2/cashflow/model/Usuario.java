@@ -17,48 +17,37 @@ import javax.persistence.Table;
 public class Usuario 
 {
 	@Id
-	@Column(name="ID_USUARIO")
+	@Column(name="ID")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id_usuario;
+	private int id;
 	
 	private String email;
 	private String login;
 	private String senha;
-	private Double saldo;
+	private double saldo;
 	
 	@OneToMany(mappedBy="usuario", cascade=CascadeType.ALL, orphanRemoval=true)
 	private List<Movimentacao> movimentacoes;
 	
-	public Usuario(String email, String login, String senha) {
+	public Usuario(int id, String email, String login, String senha) {
+		this.id = id;
 		this.email = email;
 		this.login = login;
 		this.senha = senha;
 		this.saldo = 0.0;
 		this.movimentacoes = new ArrayList<Movimentacao>();
 	}
-	
-	public Usuario(int id, String email, String senha) {
-		this.id_usuario = id;
-		this.email = email;
-		this.senha = senha;
-		this.saldo = 0.0;
-		this.movimentacoes = new ArrayList<Movimentacao>();
-	}
-	
+
 	public Usuario() {
 //	PARA PERSISTENCIA 
 	}	
-
-	public Double getSaldo() {
-		return saldo;
-	}
-
-	public void setSaldo(Double saldo) {
-		this.saldo = saldo;
+	
+	public int getId(){
+		return id;
 	}
 	
-	public Integer getId(){
-		return this.id_usuario;
+	public void setId_usuario(int id) {
+		this.id = id;
 	}
 
 	public String getEmail() {
@@ -68,6 +57,14 @@ public class Usuario
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
 
 	public String getSenha() {
 		return senha;
@@ -75,6 +72,14 @@ public class Usuario
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	
+	public double getSaldo() {
+		return saldo;
+	}
+
+	public void setSaldo(double saldo) {
+		this.saldo = saldo;
 	}
 
 	public List<Movimentacao> getMovimentacoes() {
