@@ -5,30 +5,24 @@ import javax.persistence.EntityManagerFactory;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.edu.ifpb.pweb2.cashflow.controller.MovimentacaoController;
 import br.edu.ifpb.pweb2.cashflow.controller.Resultado;
-import br.edu.ifpb.pweb2.cashflow.controller.UsuarioController;
-import br.edu.ifpb.pweb2.cashflow.model.Usuario;
+import br.edu.ifpb.pweb2.cashflow.model.Movimentacao;
 
-public class CadastraUsuarioComando implements ICommand {
+public class CadastraMovimentacaoComando implements ICommand {
 
 	@Override
 	public Resultado execute(HttpServletRequest request, HttpServletResponse response) {
-		final String paginaSucesso = "controller.do?op=cadusu";
-		final String paginaErro = "usuario/cadastro.jsp";
-
+		final String paginaSucesso = "controller.do?op=cadmov";
+		final String paginaErro = "movimentacao/movimentacao.jsp";
+		
 		EntityManagerFactory emf = (EntityManagerFactory)
 		request.getServletContext().getAttribute("emf");
 		EntityManager em = emf.createEntityManager();
-		UsuarioController usuarioCtrl = new UsuarioController(em);
-
-		System.out.println("Chegou no CadastroUsuarioComando, dentro do metodo execute.");
-
-//		UsuarioController usuarioCtrl = new UsuarioController(PersistenceUtil.getCurrentEntityManager());
-
-//		HttpSession session = request.getSession();
-//		Usuario usuario = (Usuario) session.getAttribute("email");
-
-		Resultado resultado = usuarioCtrl.cadastre(request.getParameterMap());
+		MovimentacaoController movimentacaoCtrl = new MovimentacaoController(em);
+		
+		Resultado resultado = movimentacaoCtrl.cadastre(request.getParameterMap());
+		
 		System.out.println("Resultado: " + resultado);
 
 		if (!resultado.isErro()) {
@@ -37,10 +31,11 @@ public class CadastraUsuarioComando implements ICommand {
 			resultado.setProximaPagina(paginaSucesso);
 			resultado.setRedirect(true);
 		} else {
-			request.setAttribute("usuario", (Usuario) resultado.getModel());
+			request.setAttribute("movimentacao", (Movimentacao) resultado.getModel());
 			request.setAttribute("_msg", resultado.getMensagens());
 			resultado.setProximaPagina(paginaErro);
 		}
 		return resultado;
 	}
+
 }
