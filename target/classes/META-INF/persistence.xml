@@ -31,20 +31,30 @@ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 		</properties>
 -->
 
-
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
 		    <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/cashflow" />
 		    <property name="javax.persistence.jdbc.user" value="postgres" />
 		    <property name="javax.persistence.jdbc.password" value="ifpb" />
 		    
-		    <property name="eclipselink.ddl-generation" value="create-tables" /> 
-		    <property name="eclipselink.ddl-generation.output-mode" value="database"/>
-		    <property name="eclipselink.logging.level" value="fine"/>	
-		    <property name="eclipselink.logging.file" value="log.txt"/>    
-		</properties>	
- 
- 
+		    <property name="hibernate.dialect" 			value="org.hibernate.dialect.PostgreSQLDialect" /> 
+		    <property name="hibernate.hbm2ddl.auto" 	value="update"/>
+		    <property name="hibernate.show_sql" 		value="false"/>	
+		    <property name="hibernate.use_sql_comments" value="false"/>
+		    <property name="hibernate.format_sql" 		value="false" /> 
+		</properties>
+		
+<!--		
+		<properties>
+			<property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver" />
+			<property name="hibernate.connection.user" value="root" />
+			<property name="hibernate.connection.password" value="" />
+			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/cashflow" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+		</properties>		
+-->		
+  
 <!-- 
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
@@ -56,8 +66,7 @@ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 		    <property name="eclipselink.ddl-generation.output-mode" value="database"/>
 		    <property name="eclipselink.logging.level" value="fine"/>	
 		    <property name="eclipselink.logging.file" value="log.txt"/>  	   	    
-		</properties>
-		
+		</properties>	
 -->
 
 	</persistence-unit>

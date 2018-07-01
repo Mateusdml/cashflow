@@ -17,11 +17,10 @@ import br.edu.ifpb.pweb2.cashflow.controller.Resultado;
 @WebServlet("/controller.do")
 public class FrontControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String NOME_PACOTE = "br.edu.ifpb.pweb2.projetos.cashflow.command.";
+	private static final String NOME_PACOTE = "br.edu.ifpb.pweb2.command";
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		this.doRequest(request, response);
-		
 	}
 
 	protected void doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -45,9 +44,11 @@ public class FrontControllerServlet extends HttpServlet {
 		Class<?> clazzCommand = Class.forName(NOME_PACOTE + nomeClasseCommand);
 		ICommand comando = (ICommand) clazzCommand.newInstance();
 		resultado = comando.execute(request, response);
+	
+	// originalmente no catch abaixo: catch (ClassNotFoundException | InstatiationException | IllegalAccessException e)
 		
-	} catch (ClassNotFoundException | InstatiationException | IllegalAccessException e) {
-		this.getServletContext().setAttribute("_msg", "Comando inexistente, verifique arquivo de comandos!");
+	} catch (ClassNotFoundException e) {
+		this.getServletContext().setAttribute("_msg", "Comando " +operacao+ " inexistente!");
 		response.sendRedirect(request.getHeader("Referer"));
 		return;
 	} catch (Exception e) {
@@ -72,5 +73,4 @@ public class FrontControllerServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		this.doRequest(request, response);
 	}
-
 }

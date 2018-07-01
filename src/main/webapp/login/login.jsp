@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,7 +17,7 @@
 			<div class="alert alert-danger">$_msg</div>
 		</c:if>
 		
-		<form class="form-signin" action="${pageContext.request.contextPath}/Login/Logon" method="post">
+		<form class="form-signin" action="${pageContext.request.contextPath}/controller.do?op=login" method="post">
 			<label for="inputEmail" class="sr-only">Usuario</label>
 			<input type="text" name="login" id="login" class="form-control" placeholder="O seu username para login" required autofocus
 			   value="${cookie['loginCookie'].value}" /><br/><br/>

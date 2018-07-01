@@ -13,9 +13,9 @@ import javax.persistence.Table;
 public class Movimentacao 
 {
 	@Id
-	@Column(name="ID_MOVIMENTACAO")
+	@Column(name="ID")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id_movimentacao;
+	private int id;
 	
 	private String descricao;
 	private double valor;
@@ -36,7 +36,7 @@ public class Movimentacao
 	
 //	PARA QUANDO VIER DO BANCO DE DADOS
 	public Movimentacao(int id, Usuario usuario, String descricao, double valor, boolean tipo) {
-		this.id_movimentacao = id;
+		this.id = id;
 		this.usuario = usuario;
 		this.descricao = descricao;
 		this.valor = valor;
@@ -44,7 +44,7 @@ public class Movimentacao
 	}
 	
 	public int getId() {
-		return this.id_movimentacao;
+		return this.id;
 	}
 	
 	public Usuario getIdUsuario() {

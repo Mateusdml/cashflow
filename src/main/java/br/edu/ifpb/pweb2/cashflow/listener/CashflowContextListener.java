@@ -24,9 +24,10 @@ public class CashflowContextListener implements ServletContextListener {
 	@Override
 	public void contextInitialized(ServletContextEvent e) {
 		emf = PersistenceUtil.createEntityManagerFactory("cashflow");
-		e.getServletContext().setAttribute("emf", emf);
-		System.out.println("Fabrica de EntityManagers criada e no contexto.");
+//		e.getServletContext().setAttribute("emf", emf);
+		System.out.println("Fabrica de EntityManagers construida!");
 		
+		// Carrega o arquivo que mapeia operacoes em classes de comandos
 		Properties p = new Properties();
 		try {
 			p.load(e.getServletContext().getResourceAsStream("/WEB-INF/comandos.properties"));

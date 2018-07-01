@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
 
 import br.edu.ifpb.pweb2.cashflow.dao.UsuarioDAO;
-import br.edu.ifpb.pweb2.cashflow.model.Movimentacao;
 import br.edu.ifpb.pweb2.cashflow.model.Usuario;
 
 public class UsuarioController {
@@ -19,34 +18,45 @@ public class UsuarioController {
 		this.entityManager = em;
 	}
 
-	public Resultado cadastre(Usuario usuario, Map<String, String[]> parametros ) {
+	public Resultado cadastre(Map<String, String[]> parametros ) {
 		Resultado resultado = new Resultado();
-		Usuario u = null;
-		String email = null;
+		Usuario usuario = null;
+//		String email = null;
 		
-		if ((u = fromParametros(parametros)) != null) {
+		if ((usuario = fromParametros(parametros)) != null) {
 			UsuarioDAO dao = new UsuarioDAO(entityManager);
 			dao.beginTransaction();
 			
-			UsuarioDAO udao = new UsuarioDAO(entityManager);
-			usuario = udao.findByEmail(usuario.getEmail());
+			System.out.println("Antes do INSERT no UsuarioController!");
+			dao.insert(usuario);
 			
-			usuario.setEmail(email);
+			System.out.println("Usuario depois da persistencia no UsuarioController: " +usuario);
+			dao.commit();
+			System.out.println("Depois do commit.");
+			resultado.setErro(false);
+			String m = "Usuario salvo com sucesso!";
+			resultado.addMensagens(m);
 			
-			if (usuario.getEmail() == null) {
-				dao.insert(usuario);
-			} else {
-				dao.update(usuario);
-			}
-				dao.commit();
-				resultado.setErro(false);
-				String msg = "Usuario salvo com sucesso";
-				resultado.addMensagens(msg);
+//			UsuarioDAO udao = new UsuarioDAO(entityManager);
+//			usuario = udao.findByEmail(usuario.getEmail());
+			
+//			usuario.setEmail(email);
+			
+//			if (usuario.getEmail() == null) {
+//				dao.insert(usuario);
+//			} else {
+//				dao.update(usuario);
+//			}
+//				dao.commit();
+//				resultado.setErro(false);
+//				String msg = "Usuario salvo com sucesso";
+//				resultado.addMensagens(msg);
 		} else {
-			resultado.setModel(usuario);
+//			resultado.setModel(usuario);
 			resultado.setErro(true);
 			resultado.setMensagens(this.mensagensErro);
 		}
+		System.out.println("Resultado: " +resultado);
 		return resultado;
 	}
 
@@ -60,7 +70,7 @@ public class UsuarioController {
 	 */
 
 	private Usuario fromParametros(Map<String, String[]> parametros) {
-		// os nomes dos parametros vem dos atributos 'name' das tags HTML do formulario
+	// os nomes dos parametros vem dos atributos 'name' das tags HTML do formulario
 
 		String[] email = parametros.get("email");
 		String[] login = parametros.get("login");
@@ -96,11 +106,8 @@ public class UsuarioController {
 		return usuarios;
 	}
 
-	public Usuario busque(Map<String, String[]> parameterMap) throws Exception {
+	public Usuario busque(Map<String, String[]> parameterMap) {
 		String[] id = parameterMap.get("id");
-		if (id == null) {
-			throw new Exception("Parametro ID nao encontrado.");
-		}
 		UsuarioDAO dao = new UsuarioDAO(entityManager);
 		Usuario usuario = dao.find(Integer.parseInt(id[0]));
 		return usuario;
